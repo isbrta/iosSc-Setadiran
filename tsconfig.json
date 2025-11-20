@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // خروجی ES6 برای سازگاری با Scriptable
+    "moduleResolution": "Bundler",
+    "module": "ESNext", // برای esbuild که بعداً به iife تبدیل بشه
+    "lib": ["ES2023"], // کتابخانه‌های مدرن TypeScript 5+
+    "outDir": "./dist", // مسیر خروجی فایل‌های کامپایل‌شده
+    "rootDir": "./src", // مسیر فایل‌های ورودی
+    "strict": false, // بررسی‌های دقیق برای کیفیت کد
+    "esModuleInterop": true, // سازگاری با import پیش‌فرض
+    "allowSyntheticDefaultImports": true, // برای importهای ساده‌تر
+    "resolveJsonModule": false, // پشتیبانی از import فایل‌های JSON
+    "removeComments": true, // حذف کامنت‌ها در خروجی
+    "noUnusedLocals": true, // هشدار برای متغیرهای استفاده‌نشده
+    "noImplicitAny": true, // جلوگیری از any بدون تایپ‌دهی
+    "sourceMap": false, // Scriptable از sourcemap استفاده نمی‌کنه
+    "declaration": false, // فایل‌های .d.ts لازم نیست
+    "allowJs": false, // فقط فایل‌های TS مجاز هستن
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false
+  }
+}

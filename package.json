@@ -1,0 +1,27 @@
+{
+  "name": "setad",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "typecheck": "tsc -p tsconfig.build.json --noEmit",
+    "prepare": "npm run build",
+    "scbuild": "node esbuild.config.js",
+    "build2": "node esbuild.config.js"
+  },
+  "devDependencies": {
+    "@types/scriptable-ios": "^1.7.8",
+    "esbuild": "^0.27.0",
+    "prettier": "^3.6.2",
+    "tslint": "^5.20.1",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "rxjs": "^7.8.2"
+  }
+}
