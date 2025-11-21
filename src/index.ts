@@ -2,16 +2,42 @@ import { SiApiClient } from './client';
 import { loadFromFile, saveToFile } from './lib/scriptable';
 
 async function main() {
-  // const data = await loadFromFile('sb.json', true);
   const si = new SiApiClient();
-  // si.state.deserialize(data);
+  try {
+    const data = await loadFromFile('sb.json', true);
+    si.state.deserialize(data);
+
+    // login
+
+    const isLoggedIn = await si.portal.isLoggedIn();
+    if (!isLoggedIn) {
+      const captchaImage = await si.portal.captchaImage();
+      await QuickLook.present(captchaImage);
+      const alert = new Alert();
+      alert.title = 'captcha';
+      alert.message = 'code?';
+      alert.addTextField('code', '');
+      alert.addAction('ok');
+      await alert.presentAlert();
+
+      const login = await si.portal.login('saberrostami', 'Saber@137227', alert.textFieldValue(0));
+      if (login) {
+      }
+    }
+    await si.portal.selectRole('SR910426', 955, -2);
+  } finally {
+    saveToFile('sb.json', si.state.serialize());
+  }
+
   // try {
+
+  /* test 1
   let feed = si.feed.cards({
     searchTypeCode: 1,
     keyword: '3104106959000158',
   });
 
-  /* test 1
+
   feed.items$.subscribe({
     next: (cs) => {
       const myCard = cs[0];
@@ -20,7 +46,7 @@ async function main() {
     }
   }); */
 
-  /* test 2 */
+  /* test 2 
   const cards = await feed.items();
   const myCard = cards[0];
   console.log(myCard.toJSON());
@@ -43,7 +69,7 @@ async function main() {
 
   const countTotalAppendix = await myCard.countTotalAppendix();
   await QuickLook.present(countTotalAppendix);
-
+*/
   //myCard.
   //  } catch (e) {
   //   console.error(e);

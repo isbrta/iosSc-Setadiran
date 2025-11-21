@@ -46,7 +46,6 @@ export class PortalAuth {
       headers: {
         Accept:
           'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-        'X-XSRF-TOKEN': this.client.state.getCookieCsrfToken('https://sso2.setadiran.ir/portal'),
       },
       responseType: 'html',
     });
@@ -98,14 +97,16 @@ export class PortalAuth {
           organization: String(organizationId),
         }),
       },
+      headers: {
+        'X-XSRF-TOKEN': this.client.state.getCookieCsrfToken('https://sso2.setadiran.ir/portal'),
+      },
       followRedirect: false,
     });
 
     if (response?.statusCode === 200) {
       return response.body;
     }
-    throw new SiRoleVerificationError(response)
-
+    throw new SiRoleVerificationError(response);
   }
 
   private parseRoles(html: string): RoleOrganization[] {

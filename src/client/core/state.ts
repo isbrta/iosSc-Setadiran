@@ -93,6 +93,7 @@ export class State {
     }
   }
   public serialize() {
+
     const obj = {
       cookies: this.cookieJar.serialize(),
     };
